@@ -1,0 +1,197 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.4
+-- Dumped by pg_dump version 13.0
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Data for Name: glbm_buku; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.glbm_buku (kode, nama, penerbit, bab, tglsimpan, pemakai, aktif, status_baca) FROM stdin;
+BUKU000009	SBK	Erlangga	3	2023-04-14 11:40:07	admin	t	0
+BUKU000001	IPA	NIKI	3	2023-04-13 14:47:20	admin	t	0
+BUKU000002	IPS	Dwi Astuti	3	2023-04-13 15:04:04	admin	t	0
+BUKU000003	MTK	Erlangga	4	2023-04-14 11:38:07	admin	t	0
+BUKU000004	BAHASA INDONESIA	Erlangga	4	2023-04-14 11:38:20	admin	t	0
+BUKU000005	BAHASA INGGRIS	Erlangga	4	2023-04-14 11:38:34	admin	t	0
+BUKU000006	AGAMA	Erlangga	4	2023-04-14 11:38:55	admin	t	0
+BUKU000007	PENJAS	Erlangga	4	2023-04-14 11:39:25	admin	t	0
+BUKU000010	BAHASA JEPANG	Nanami Hokai	10	2023-05-09 16:11:11	admin	t	0
+\.
+
+
+--
+-- Data for Name: glbm_grup; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.glbm_grup (kode, nama, aktif, tglsimpan, usersimpan) FROM stdin;
+2	SISWA	t	2023-03-26 13:48:35.61823	admin
+3	GURU	t	2023-03-26 13:48:35.61823	admin
+1	ADMIN	t	2023-03-26 13:48:35.61823	admin
+\.
+
+
+--
+-- Data for Name: glbm_guru; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.glbm_guru (kode, email, nama, jenkel, usia, alamat, aktif, tglsimpan, pemakai, image, grup, namagrup, password) FROM stdin;
+\.
+
+
+--
+-- Data for Name: glbm_kelas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.glbm_kelas (kode, nama, murid, tglsimpan, pemakai, aktif) FROM stdin;
+KLS000001	MIPA 1A	32	2023-03-22 15:45:47	admin	t
+KLS000002	MIPA 1B	22	2023-03-22 15:46:11	admin	t
+KLS000003	MIPA 1C	22	2023-03-22 15:46:18	admin	t
+KLS000004	IPS 1A	22	2023-03-22 15:46:27	admin	t
+KLS000005	IPS 1B	22	2023-03-22 15:46:35	admin	t
+KLS000006	IPS 1C	22	2023-03-22 15:46:43	admin	t
+KLS000008	TIK 1B	22	2023-03-22 15:46:57	admin	t
+KLS000007	TIK 1A	32	2023-04-12 14:03:10	admin	t
+KLS000009	TIK 1C	22	2023-04-14 11:10:59	admin	t
+KLS000010	tes	12	2023-05-04 14:43:08	admin	t
+\.
+
+
+--
+-- Data for Name: glbm_login; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.glbm_login (email, password, kodekelas, aktif, tglsimpan, usersimpan, roleid, image, nama) FROM stdin;
+admin	MQ==	KLS000001	t	2023-04-17 09:49:15.380123	admin	1	foto_guru_20230417155734.png	admin
+\.
+
+
+--
+-- Data for Name: glbm_mapping_buku; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.glbm_mapping_buku (kode, kodekelas, namakelas, kodebuku, namabuku, penerbit, tglsimpan, pemakai, aktif) FROM stdin;
+MB000001	KLS000001	MIPA 1A	BUKU000010	BAHASA JEPANG	Shugeo Takeda	2023-05-04 08:59:16	admin	t
+MB000002	KLS000001	MIPA 1A	BUKU000002	IPS	Dwi Astuti	2023-05-04 08:59:24	admin	t
+MB000003	KLS000001	MIPA 1A	BUKU000009	SBK	Erlangga	2023-05-04 08:59:33	admin	t
+MB000004	KLS000001	MIPA 1A	BUKU000007	PENJAS	Erlangga	2023-05-04 08:59:42	admin	t
+MB000005	KLS000001	MIPA 1A	BUKU000006	AGAMA	Erlangga	2023-05-04 08:59:52	admin	t
+MB000006	KLS000001	MIPA 1A	BUKU000005	BAHASA INGGRIS	Erlangga	2023-05-04 09:00:02	admin	t
+MB000007	KLS000001	MIPA 1A	BUKU000004	BAHASA INDONESIA	Erlangga	2023-05-04 09:00:15	admin	t
+MB000008	KLS000001	MIPA 1A	BUKU000003	MTK	Erlangga	2023-05-04 09:00:25	admin	t
+MB000009	KLS000001	MIPA 1A	BUKU000002	IPS	Dwi Astuti	2023-05-04 09:00:34	admin	t
+\.
+
+
+--
+-- Data for Name: glbm_mapping_guru; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.glbm_mapping_guru (kode, kodekelas, namakelas, kodeguru, email, namaguru, tglsimpan, pemakai, aktif) FROM stdin;
+\.
+
+
+--
+-- Data for Name: glbm_mapping_siswa; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.glbm_mapping_siswa (kode, kodesiswa, email, namasiswa, kodekelas, namakelas, tglsimpan, pemakai, aktif) FROM stdin;
+\.
+
+
+--
+-- Data for Name: glbm_siswa; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.glbm_siswa (kode, email, nama, usia, jenkel, tglsimpan, pemakai, aktif, image, password) FROM stdin;
+\.
+
+
+--
+-- Data for Name: stpm_baca; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.stpm_baca (kode, tanggal, namasiswa, nama, tglsimpan, pemakai, aktif, status_baca, note, bab, selesaibaca) FROM stdin;
+\.
+
+
+--
+-- Data for Name: stpm_generate; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.stpm_generate (kode, tanggal, kodekelas, namakelas, kodebuku, nama, penerbit, status_baca, tglsimpan, pemakai, aktif, bab) FROM stdin;
+\.
+
+
+--
+-- Data for Name: stpm_menu; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.stpm_menu (id, modul, submenu, title, menu_url, pos, aktif, tglsimpan, pemakai) FROM stdin;
+8	Read	Menu	Read Siswa	main/read	8	t	2023-03-21 08:57:19.337747	admin
+2	Master Data		Siswa	main/siswa	2	t	2023-03-21 08:54:09.222865	admin
+3	Master Data		Guru	main/guru	3	t	2023-03-21 08:54:09.222865	admin
+1	Master Data		Kelas	main/kelas	1	t	2023-03-21 08:54:09.222865	admin
+4	Master Data		Buku	main/buku	4	t	2023-03-21 08:54:09.222865	admin
+10	Master Data		Mapping Buku	main/mapping_buku	10	t	2023-03-23 09:21:45.449724	admin
+11	Read	Menu	Histori Baca	main/histori_baca_guru	11	t	2023-03-24 16:33:40.185881	admin
+7	Master Data		Profile	main/admin	7	t	2023-03-21 08:54:09.222865	admin
+9	Read	Menu	Generate Baca Siswa	main/auto_read_siswa	9	t	2023-03-21 16:01:11.327115	admin
+12	Read	Menu	History Baca Siswa 	main/histori_baca_siswa	12	t	2023-04-12 13:36:54.85554	admin
+13	Laporan		Laporan	main/laporan	13	t	2023-05-06 11:07:09.3615	admin
+5	Master Data		Mapping Guru	main/mapping_guru	5	t	2023-03-21 08:54:09.222865	admin
+6	Master Data		Mapping Siswa	main/mapping_siswa	6	t	2023-03-21 08:54:09.222865	admin
+\.
+
+
+--
+-- Data for Name: stpm_rolemenu; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.stpm_rolemenu (id, namarole, tglsimpan, pemakai) FROM stdin;
+1	admin	2022-12-15 16:18:53	admin
+2	guru	2023-03-21 08:33:46.476517	admin
+3	siswa	2023-03-21 08:33:46.476517	admin
+\.
+
+
+--
+-- Data for Name: stpm_rolemenudetail; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.stpm_rolemenudetail (id, roleid, idmenu, tglsimpan, pemakai) FROM stdin;
+1	1	1	2023-03-21 09:01:05.2413	admin
+2	1	2	2023-03-21 09:01:05.2413	admin
+3	1	3	2023-03-21 09:01:05.2413	admin
+4	1	4	2023-03-21 09:01:05.2413	admin
+5	1	5	2023-03-21 09:01:05.2413	admin
+6	1	6	2023-03-21 09:01:05.2413	admin
+12	1	10	2023-03-23 10:13:41.708995	admin
+14	1	11	2023-03-24 16:47:22.561447	admin
+8	3	8	2023-03-21 09:01:05.2413	admin
+13	2	11	2023-03-24 16:34:06.908116	admin
+10	1	12	2023-03-21 16:06:30.655794	admin
+11	1	8	2023-03-21 16:06:30.655794	admin
+15	1	9	2023-04-12 13:37:22.407739	admin
+16	1	13	2023-05-06 11:07:46.202067	admin
+9	3	11	2023-05-08 14:27:39.518539	admin
+\.
+
+
+--
+-- PostgreSQL database dump complete
+--
+
